@@ -8,7 +8,7 @@ namespace ResumeProjectDemoNight.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=;initial catalog=;integrated security=true;trust server certificate=true");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-MO1FN9D;initial catalog=Project1NightResumeDb;integrated security=true;trust server certificate=true");
         }
 
         public DbSet<About> Abouts{ get; set; }
