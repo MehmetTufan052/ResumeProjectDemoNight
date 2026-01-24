@@ -20,6 +20,8 @@ namespace ResumeProjectDemoNight.Context
         public DbSet<Testimonial> Testimonials{ get; set; }
         public DbSet<About2> Abouts2 { get; set; }
         public DbSet<Skill> Skills { get; set; }
+        public DbSet<Statistic> Statistics { get; set; }
+        public DbSet<Education> Educations { get; set; }
 
     }
 }

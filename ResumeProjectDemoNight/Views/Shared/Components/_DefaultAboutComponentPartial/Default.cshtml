@@ -24,7 +24,10 @@
                                 <!-- about text -->
                                 <p>@item.Description</p>
                                 <div class="mt-3">
-                                    <a href="#" class="btn btn-default">Download CV</a>
+                                    <a href="/File/DownloadCV" class="btn btn-primary">
+                                        Download CV
+                                    </a>
+
                                 </div>
                                 <div class="spacer d-md-none d-lg-none" data-height="30"></div>
                             </div>
@@ -59,47 +62,21 @@
 
         <!-- row end -->
         <div class="spacer" data-height="70"></div>
-
         <div class="row">
-            <div class="col-md-3 col-sm-6">
-                <div class="fact-item">
-                    <span class="icon icon-fire"></span>
-                    <div class="details">
-                        <h3 class="mb-0 mt-0 number"><em class="count">198</em></h3>
-                        <p class="mb-0">Projects completed</p>
-                    </div>
-                </div>
-            </div>
+            @foreach (var stat in Model.Statistics)
+            {
 
-            <div class="col-md-3 col-sm-6">
-                <div class="fact-item">
-                    <span class="icon icon-cup"></span>
-                    <div class="details">
-                        <h3 class="mb-0 mt-0 number"><em class="count">5670</em></h3>
-                        <p class="mb-0">Cup of coffee</p>
+                <div class="col-md-3 col-sm-6">
+                    <div class="fact-item">
+                        <span class="@stat.Icon"></span>
+                        <div class="details">
+                            <h3 class="mb-0 mt-0 number"><em class="count">@stat.CountValue</em></h3>
+                            <p class="mb-0">@stat.Title</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6">
-                <div class="fact-item">
-                    <span class="icon icon-people"></span>
-                    <div class="details">
-                        <h3 class="mb-0 mt-0 number"><em class="count">427</em></h3>
-                        <p class="mb-0">Satisfied clients</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 col-sm-6">
-                <div class="fact-item">
-                    <span class="icon icon-badge"></span>
-                    <div class="details">
-                        <h3 class="mb-0 mt-0 number"><em class="count">35</em></h3>
-                        <p class="mb-0">Nominees winner</p>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
+
     </div>
 </section>

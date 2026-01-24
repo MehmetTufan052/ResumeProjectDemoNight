@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ResumeProjectDemoNight.Context;
 
@@ -11,9 +12,11 @@ using ResumeProjectDemoNight.Context;
 namespace ResumeProjectDemoNight.Migrations
 {
     [DbContext(typeof(ResumeContext))]
-    partial class ResumeContextModelSnapshot : ModelSnapshot
+    [Migration("20260124100355_mig_add_statistics")]
+    partial class mig_add_statistics
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -95,34 +98,6 @@ namespace ResumeProjectDemoNight.Migrations
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("ResumeProjectDemoNight.Entities.Education", b =>
-                {
-                    b.Property<int>("EducationID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EducationID"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("EducationPeriodDate")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("SchoolName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("EducationID");
-
-                    b.ToTable("Educations");
                 });
 
             modelBuilder.Entity("ResumeProjectDemoNight.Entities.Experience", b =>

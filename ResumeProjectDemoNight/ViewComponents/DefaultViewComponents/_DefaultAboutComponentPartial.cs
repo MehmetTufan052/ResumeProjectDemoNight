@@ -20,7 +20,8 @@ namespace ResumeProjectDemoNight.ViewComponents.DefaultViewComponents
             var model = new DefaultAboutVM
             {
                 Abouts2 = _context.Abouts2.ToList(),
-                Skills = _context.Skills.ToList()
+                Skills = _context.Skills.ToList(),
+                Statistics = _context.Statistics.ToList()
             };
 
             return View(model);
