@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ResumeProjectDemoNight.Context;
+using ResumeProjectDemoNight.Entities;
 
 namespace ResumeProjectDemoNight.Controllers
 {
@@ -16,6 +17,15 @@ namespace ResumeProjectDemoNight.Controllers
         {
             var values = _context.Messages.ToList();
             return View(values);
+        }
+
+   
+        [HttpPost]
+        public IActionResult SendMessage(Message message)
+        {
+           
+                return Content("SendMessage action çalıştı");
+            
         }
     }
 }

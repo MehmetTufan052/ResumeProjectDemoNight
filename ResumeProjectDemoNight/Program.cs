@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using ResumeProjectDemoNight.Context;
 
 var builder = WebApplication.CreateBuilder(args);
