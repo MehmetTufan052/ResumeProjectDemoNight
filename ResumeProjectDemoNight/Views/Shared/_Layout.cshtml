@@ -9,6 +9,23 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ResumeProjectDemoNight.styles.css" asp-append-version="true" />
 </head>
+
+@if (TempData["MessageStatus"] != null)
+{
+    <div class="global-alert">
+        Mesajınız başarıyla gönderildi 👌
+    </div>
+}
+
+<script>
+    setTimeout(() => {
+        const alert = document.querySelector(".global-alert");
+        if (alert) alert.remove();
+    }, 3000);
+</script>
+
+
+
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">

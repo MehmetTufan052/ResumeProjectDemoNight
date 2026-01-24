@@ -29,3 +29,39 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+/* MESSAGE ALERT */
+.global-alert {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    background: #28a745;
+    color: #fff;
+    padding: 14px 26px;
+    border-radius: 12px;
+    font-size: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,.25);
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 30px;
+    border: none;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    font-size: 14px;
+}
+
+.contact-form textarea {
+    border-radius: 20px;
+    resize: none;
+}
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+        outline: none;
+    }

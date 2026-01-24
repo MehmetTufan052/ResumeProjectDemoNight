@@ -19,13 +19,21 @@ namespace ResumeProjectDemoNight.Controllers
             return View(values);
         }
 
-   
+
         [HttpPost]
         public IActionResult SendMessage(Message message)
         {
-           
-                return Content("SendMessage action çalıştı");
-            
+            message.SendDate = DateTime.Now;
+            message.IsRead = false;
+
+            _context.Messages.Add(message);
+            _context.SaveChanges();
+
+            TempData["MessageStatus"] = true;
+
+            return RedirectToAction("Index", "Default");
         }
+
+
     }
 }
