@@ -34,6 +34,12 @@ namespace ResumeProjectDemoNight.Controllers
             return RedirectToAction("Index", "Default");
         }
 
-
+        public IActionResult DeleteMessage(int id)
+        {
+            var value=_context.Messages.Find(id);
+            _context.Messages.Remove(value);
+            _context.SaveChanges();
+            return RedirectToAction("MessageList");
+        }
     }
 }

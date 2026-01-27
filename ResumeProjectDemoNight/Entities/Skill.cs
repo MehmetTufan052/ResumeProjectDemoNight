@@ -9,5 +9,6 @@ namespace ResumeProjectDemoNight.Entities
         public string SkillName { get; set; }
         public int SkillValue { get; set; }
         public string SkillColor { get; set; }
+        public string SkillSpanClass { get; set; }
     }
 }

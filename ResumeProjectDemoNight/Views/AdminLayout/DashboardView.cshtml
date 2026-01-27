@@ -1,4 +1,5 @@
-﻿
+﻿@model List<ResumeProjectDemoNight.Entities.Skill>
+
 @{
     ViewData["Title"] = "DashboardView";
     Layout = "~/Views/AdminLayout/Index.cshtml";
@@ -34,56 +35,30 @@
     </script>
     <style type="text/tailwindcss">
         @@layer components {
-            .glass-card
+            .glass-card {
+                background: rgba(47, 35, 72, 0.4);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+            }
 
-        {
-            background: rgba(47, 35, 72, 0.4);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            .glow-purple {
+                box-shadow: 0 0 15px rgba(108, 43, 238, 0.3);
+            }
+
+            .glow-teal {
+                box-shadow: 0 0 15px rgba(0, 245, 212, 0.2);
+            }
         }
 
-        .glow-purple {
-            box-shadow: 0 0 15px rgba(108, 43, 238, 0.3);
-        }
-
-        .glow-teal {
-            box-shadow: 0 0 15px rgba(0, 245, 212, 0.2);
-        }
-
+        html, body {
+            overflow-y: auto !important;
+            height: auto !important;
+            min-height: 100vh;
         }
     </style>
 </head>
 <body class="bg-background-light dark:bg-background-dark font-display text-white min-h-screen">
-    <div class="layout-container flex h-full grow flex-col">
-        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-white/10 px-6 py-4 lg:px-10 bg-background-dark/80 sticky top-0 z-50 backdrop-blur-md">
-            <div class="flex items-center gap-8">
-                <div class="flex items-center gap-3 text-white">
-                    <div class="size-8 bg-primary rounded-lg flex items-center justify-center glow-purple">
-                        <span class="material-symbols-outlined text-white">terminal</span>
-                    </div>
-                    <h2 class="text-white text-xl font-bold leading-tight tracking-tight">DevPanel</h2>
-                </div>
-                <div class="hidden md:flex items-center gap-6 ml-4">
-                    <a class="text-white text-sm font-medium hover:text-primary transition-colors" href="#">Panel</a>
-                    <a class="text-white/60 text-sm font-medium hover:text-white transition-colors" href="#">Projeler</a>
-                    <a class="text-white/60 text-sm font-medium hover:text-white transition-colors" href="#">Analizler</a>
-                    <a class="text-white/60 text-sm font-medium hover:text-white transition-colors" href="#">Ayarlar</a>
-                </div>
-            </div>
-            <div class="flex flex-1 justify-end gap-4 items-center">
-                <div class="hidden sm:flex items-center bg-white/5 rounded-xl px-3 py-1.5 border border-white/10 focus-within:border-primary/50 transition-all">
-                    <span class="material-symbols-outlined text-white/40 text-xl">search</span>
-                    <input class="bg-transparent border-none focus:ring-0 text-sm w-48 text-white placeholder:text-white/30" placeholder="Metriklerde ara..." type="text" />
-                </div>
-                <button class="relative p-2 rounded-xl bg-white/5 border border-white/10 text-white/80 hover:bg-white/10">
-                    <span class="material-symbols-outlined">notifications</span>
-                    <span class="absolute top-2 right-2 size-2 bg-teal-accent rounded-full glow-teal"></span>
-                </button>
-                <div class="size-10 rounded-full border-2 border-primary p-0.5 glow-purple">
-                    <div class="size-full rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBEkCaizhM2N2A7f9c7i5C7n3uCJ2qx3o9rYRYK00MFgWRcne1BLPuBXZsOBrTLGg3Vcv98XAgPxAmReyPPA0RfYtUxc9bkHzses5fkayIxit73j2T7Ux8uAeAmN31W5mFv_5xTJw-k7y7waf8M3VY3XgcpCCz_YxYgS0McNqO8q52NuZASPwPxWvH72qfKna5fQysEHIoLNLjErIsNBmS16ur_jDoKkne_-8JYixD3H5b-5Qzh6fIf0dK7yPSyxrvLdOf-m2aHVY0");'></div>
-                </div>
-            </div>
-        </header>
+    <div class="layout-container flex min-h-screen grow flex-col">
         <main class="flex flex-col gap-6 p-6 lg:p-10 max-w-7xl mx-auto w-full">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div class="flex flex-col gap-3 rounded-xl p-6 glass-card group hover:translate-y-[-4px] transition-all">
@@ -95,7 +70,7 @@
                     </div>
                     <div>
                         <p class="text-white/60 text-sm font-medium">Tamamlanan Projeler</p>
-                        <p class="text-3xl font-bold mt-1">42</p>
+                        <p class="text-3xl font-bold mt-1">@ViewBag.CompletedProjectsCount</p>
                     </div>
                     <div class="w-full bg-white/5 h-1.5 rounded-full overflow-hidden mt-2">
                         <div class="bg-primary h-full rounded-full glow-purple" style="width: 84%"></div>
@@ -109,8 +84,8 @@
                         <span class="text-teal-accent text-xs font-bold px-2 py-1 bg-teal-accent/10 rounded-full">+4%</span>
                     </div>
                     <div>
-                        <p class="text-white/60 text-sm font-medium">Aktif Hizmetler</p>
-                        <p class="text-3xl font-bold mt-1">12</p>
+                        <p class="text-white/60 text-sm font-medium">Aktif Projeler</p>
+                        <p class="text-3xl font-bold mt-1">4</p>
                     </div>
                     <div class="w-full bg-white/5 h-1.5 rounded-full overflow-hidden mt-2">
                         <div class="bg-teal-accent h-full rounded-full glow-teal" style="width: 60%"></div>
@@ -140,7 +115,7 @@
                     </div>
                     <div>
                         <p class="text-white/60 text-sm font-medium">Toplam Projeler</p>
-                        <p class="text-3xl font-bold mt-1">54</p>
+                        <p class="text-3xl font-bold mt-1">20</p>
                     </div>
                     <div class="w-full bg-white/5 h-1.5 rounded-full overflow-hidden mt-2">
                         <div class="bg-white/40 h-full rounded-full" style="width: 92%"></div>
@@ -153,7 +128,7 @@
                         <div class="shrink-0">
                             <div class="size-32 rounded-2xl bg-gradient-to-br from-primary to-teal-accent p-1 glow-purple">
                                 <div class="size-full rounded-xl bg-background-dark flex items-center justify-center overflow-hidden">
-                                    <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVX3QXug7n5m5jxUHe_S5E9yNH3FVvooDKVujfo_5Ag0wrADbpwXI7fAvT6PR0XEEot-hE3RZn-ElIAr0igcpfvF2RIJR0dd7Tmey9vnJCNZAOYEMFdNbKBsUWO0n7QyZ9cwh50_Nrzvl90OcL4L2_kNfJngbdPK6AsytTMXhEN2cN4zCAuFBbI1_lbBrueLuBP3AN4JSaVXzmaNhhsT-4NU8yDlZBm4SbGeDTYFwbo-u4fXn2n0ESxAddCcOfMNnYlORUOo3cgLM" />
+                                    <img class="w-full h-full object-cover" src="@ViewBag.ProfileImageUrl" />
                                 </div>
                             </div>
                         </div>
@@ -161,36 +136,39 @@
                             <div class="flex justify-between items-start mb-4">
                                 <div>
                                     <h3 class="text-lg text-white/60 font-medium mb-1">Hakkımda Özeti</h3>
-                                    <h3 class="text-2xl font-bold text-white">Alex Chen</h3>
-                                    <p class="text-primary font-medium">Kıdemli Full Stack Geliştirici</p>
+                                    <h3 class="text-2xl font-bold text-white">@ViewBag.ProfileName</h3>
+                                    <p class="text-primary font-medium">Full Stack Geliştirici</p>
                                 </div>
                                 <button class="px-4 py-2 bg-primary rounded-lg text-sm font-bold hover:bg-primary/80 transition-all flex items-center gap-2">
                                     <span class="material-symbols-outlined text-sm">edit</span> Düzenle
                                 </button>
                             </div>
                             <p class="text-white/70 leading-relaxed mb-6">
-                                Performans ve kullanıcı deneyimine odaklanarak ölçeklenebilir web mimarileri ve bulut tabanlı çözümler üretiyorum. Modern JS frameworkleri ve sağlam arka uç sistemleri konusunda uzmanım.
+                                @ViewBag.Description
                             </p>
                             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                                 <div class="flex flex-col bg-white/5 p-2 rounded-lg border border-white/5">
                                     <span class="text-[10px] text-white/40 uppercase font-bold mb-1">Konum</span>
                                     <div class="flex items-center gap-1.5">
                                         <span class="material-symbols-outlined text-teal-accent text-sm">location_on</span>
-                                        <span class="text-xs text-white/80">San Francisco</span>
+                                        <span class="text-xs text-white/80">Ordu</span>
                                     </div>
                                 </div>
                                 <div class="flex flex-col bg-white/5 p-2 rounded-lg border border-white/5">
                                     <span class="text-[10px] text-white/40 uppercase font-bold mb-1">Deneyim</span>
                                     <div class="flex items-center gap-1.5">
                                         <span class="material-symbols-outlined text-teal-accent text-sm">work_history</span>
-                                        <span class="text-xs text-white/80">8+ Yıl</span>
+                                        <span class="text-xs text-white/80">1 Yıl</span>
                                     </div>
                                 </div>
-                                <div class="flex flex-col bg-white/5 p-2 rounded-lg border border-white/5">
+                                <div class="flex flex-col bg-white/5 p-2 rounded-lg border border-white/5 overflow-hidden min-w-0">
                                     <span class="text-[10px] text-white/40 uppercase font-bold mb-1">E-Posta</span>
-                                    <div class="flex items-center gap-1.5">
-                                        <span class="material-symbols-outlined text-teal-accent text-sm">mail</span>
-                                        <span class="text-xs text-white/80">alex@dev.io</span>
+                                    <div class="flex items-center gap-1.5 min-w-0">
+                                        <span class="material-symbols-outlined text-teal-accent text-sm shrink-0">mail</span>
+
+                                        <span class="text-xs text-white/80 truncate" title="tufan@gmail.com">
+                                            tufan@gmail.com
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="flex flex-col bg-white/5 p-2 rounded-lg border border-white/5">
@@ -201,15 +179,14 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-primary/20 text-primary text-xs font-bold rounded-lg border border-primary/20">C#</span>
-                                <span class="px-3 py-1 bg-primary/20 text-primary text-xs font-bold rounded-lg border border-primary/20">JavaScript</span>
-                                <span class="px-3 py-1 bg-primary/20 text-primary text-xs font-bold rounded-lg border border-primary/20">React</span>
-                                <span class="px-3 py-1 bg-primary/20 text-primary text-xs font-bold rounded-lg border border-primary/20">.NET Core</span>
-                                <span class="px-3 py-1 bg-primary/20 text-primary text-xs font-bold rounded-lg border border-primary/20">SQL</span>
-                                <span class="px-3 py-1 bg-primary/20 text-primary text-xs font-bold rounded-lg border border-primary/20">Azure</span>
-                                <span class="px-3 py-1 bg-primary/20 text-primary text-xs font-bold rounded-lg border border-primary/20">Tailwind</span>
+                                @foreach (var item in Model)
+                                {
+                                    <span class="px-3 py-1 bg-primary/20 text-primary text-xs font-bold rounded-lg border border-primary/20">@item.SkillName</span>
+                                }
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -226,7 +203,7 @@
                                     <span class="material-symbols-outlined text-[14px]">commit</span>
                                 </div>
                                 <div>
-                                    <p class="text-sm font-semibold"><span class="text-teal-accent">e-commerce-api</span> reposuna commit</p>
+                                    <p class="text-sm font-semibold"><span class="text-teal-accent">Traversal</span> reposuna commit</p>
                                     <p class="text-xs text-white/50 mt-1">Kimlik doğrulama hatası giderildi</p>
                                     <p class="text-[10px] text-white/30 mt-1 uppercase tracking-wider">2 saat önce</p>
                                 </div>
@@ -264,14 +241,14 @@
                         <label class="flex items-center gap-4 p-3 bg-white/5 rounded-lg border border-white/5 cursor-pointer hover:bg-white/10 transition-colors">
                             <input class="w-5 h-5 rounded border-white/10 bg-white/5 text-primary focus:ring-primary focus:ring-offset-background-dark" type="checkbox" />
                             <div>
-                                <p class="text-sm font-medium">API Dokümantasyonunu Güncelle</p>
+                                <p class="text-sm font-medium">Traversal Projesindeki Eksikleri Belirle</p>
                                 <p class="text-xs text-white/40">Termin: Yarın</p>
                             </div>
                         </label>
                         <label class="flex items-center gap-4 p-3 bg-white/5 rounded-lg border border-white/5 cursor-pointer hover:bg-white/10 transition-colors">
                             <input checked="" class="w-5 h-5 rounded border-white/10 bg-white/5 text-primary focus:ring-primary focus:ring-offset-background-dark" type="checkbox" />
                             <div>
-                                <p class="text-sm font-medium line-through text-white/40">Azure Aboneliğini Yenile</p>
+                                <p class="text-sm font-medium line-through text-white/40">Claude Aboneliğini Yenile</p>
                                 <p class="text-xs text-white/20">Tamamlandı</p>
                             </div>
                         </label>
@@ -294,33 +271,24 @@
                             <circle class="text-white/30" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="200.96" stroke-linecap="round" stroke-width="10" transform="rotate(288, 50, 50)"></circle>
                         </svg>
                         <div class="absolute inset-0 flex flex-col items-center justify-center">
-                            <span class="text-2xl font-bold">12</span>
+                            <span class="text-2xl font-bold">@Model.Count</span>
                             <span class="text-[10px] text-white/40 uppercase">Toplam Teknoloji</span>
                         </div>
                     </div>
                     <div class="flex flex-col gap-2 mt-6">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <span class="size-2 rounded-full bg-teal-accent"></span>
-                                <span class="text-xs text-white/60">JavaScript</span>
+                        @foreach (var item in Model)
+                        {
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <span class="@item.SkillSpanClass"></span>
+                                    <span class="text-xs text-white/60">@item.SkillName</span>
+                                </div>
+                                <span class="text-xs font-bold text-white">@item.SkillValue%</span>
                             </div>
-                            <span class="text-xs font-bold text-white">%45</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <span class="size-2 rounded-full bg-primary"></span>
-                                <span class="text-xs text-white/60">C# / .NET</span>
-                            </div>
-                            <span class="text-xs font-bold text-white">%35</span>
-                        </div>
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <span class="size-2 rounded-full bg-white/30"></span>
-                                <span class="text-xs text-white/60">SQL / DB</span>
-                            </div>
-                            <span class="text-xs font-bold text-white">%20</span>
-                        </div>
+
+                        }
                     </div>
+
                 </div>
                 <div class="glass-card rounded-xl p-6">
                     <h3 class="text-lg font-bold mb-6">Performans Metrikleri</h3>
