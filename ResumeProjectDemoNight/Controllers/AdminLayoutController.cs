@@ -9,5 +9,9 @@ namespace ResumeProjectDemoNight.Controllers
             return View();
         }
 
+        public IActionResult DashboardView()
+        {
+            return View();
+        }
     }
 }
