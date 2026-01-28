@@ -46,6 +46,10 @@ namespace ResumeProjectDemoNight.Controllers
         public IActionResult UpdatePortfolio(int id)
         {
             var value = _context.Portfolios.Find(id);
+            if (value == null)
+            {
+                return NotFound(); 
+            }
             return View(value);
         }
 

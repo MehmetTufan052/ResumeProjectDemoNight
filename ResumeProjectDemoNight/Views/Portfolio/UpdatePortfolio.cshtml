@@ -1,18 +1,116 @@
 ﻿@model ResumeProjectDemoNight.Entities.Portfolio
+
 @{
     ViewData["Title"] = "UpdatePortfolio";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
-<h1>Proje Güncelleme Sayfası</h1>
+<div class="flex-1 overflow-y-auto p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+        <!-- Header Section -->
+        <div class="flex items-center justify-between">
+            <div>
+                <h3 class="text-2xl font-bold text-white">Proje Güncelle</h3>
+                <p class="text-slate-400 text-sm mt-1">Proje bilgilerinizi güncellemek için aşağıdaki formu doldurun.</p>
+            </div>
+            <a href="/Portfolio/PortfolioList/" class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all">
+                <span class="material-symbols-outlined" style="font-size: 20px;">arrow_back</span>
+                Geri Dön
+            </a>
+        </div>
 
-<form method="post">
-    <input type="hidden" asp-for="PortfolioId"/>
-    <label>Başlık</label>
-    <input type="text" asp-for="ProjectTitle" style="color:black" />
-    <br />
-    <label>Görsel URL</label>
-    <input type="text" asp-for="ImageUrl" style="color:black" />
-    <br />
-    <button>Projeyi Güncelle</button>
-</form>
+        <!-- Form Card -->
+        <div class="bg-card-dark rounded-xl border border-slate-800 overflow-hidden shadow-2xl">
+            <div class="p-8">
+                <form method="post" class="space-y-6">
+                    <input type="hidden" asp-for="PortfolioId" />
+
+                    <!-- Project Title -->
+                    <div class="space-y-2">
+                        <label for="ProjectTitle" class="block text-sm font-semibold text-slate-300">
+                            Proje Başlığı
+                            <span class="text-red-400">*</span>
+                        </label>
+                        <div class="relative">
+                            <span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-500" style="font-size: 20px;">work</span>
+                            <input type="text"
+                                   id="ProjectTitle"
+                                   asp-for="ProjectTitle"
+                                   class="w-full pl-12 pr-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                                   placeholder="Örn: E-Ticaret Platformu, Mobil Bankacılık Uygulaması"
+                                   required />
+                        </div>
+                        <p class="text-xs text-slate-500 mt-1">Projeniz için çekici ve açıklayıcı bir başlık girin.</p>
+                    </div>
+
+                    <!-- Image URL -->
+                    <div class="space-y-2">
+                        <label for="ImageUrl" class="block text-sm font-semibold text-slate-300">
+                            Proje Görseli URL
+                            <span class="text-red-400">*</span>
+                        </label>
+                        <div class="relative">
+                            <span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-500" style="font-size: 20px;">image</span>
+                            <input type="url"
+                                   id="ImageUrl"
+                                   asp-for="ImageUrl"
+                                   class="w-full pl-12 pr-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                                   placeholder="https://example.com/project-image.jpg"
+                                   required />
+                        </div>
+                        <p class="text-xs text-slate-500 mt-1">Projenizi en iyi temsil eden görselin URL adresini girin.</p>
+                    </div>
+
+                    <!-- Image Preview -->
+                    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                    {
+                        <div class="space-y-2">
+                            <label class="block text-sm font-semibold text-slate-300">Mevcut Görsel Önizleme</label>
+                            <div class="relative h-64 bg-slate-900 rounded-lg overflow-hidden border border-slate-700">
+                                <img src="@Model.ImageUrl"
+                                     alt="@Model.ProjectTitle"
+                                     class="w-full h-full object-cover"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                                <div class="hidden w-full h-full items-center justify-center bg-slate-800">
+                                    <div class="text-center">
+                                        <span class="material-symbols-outlined text-slate-600" style="font-size: 64px;">broken_image</span>
+                                        <p class="text-slate-500 text-sm mt-2">Görsel yüklenemedi</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <!-- Form Actions -->
+                    <div class="flex items-center gap-4 pt-6 border-t border-slate-800">
+                        <button type="submit"
+                                class="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-bold transition-all shadow-lg shadow-primary/20">
+                            <span class="material-symbols-outlined" style="font-size: 20px;">save</span>
+                            Değişiklikleri Kaydet
+                        </button>
+                        <a href="/Portfolio/PortfolioList/"
+                           class="flex-1 flex items-center justify-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-6 py-3 rounded-lg font-bold transition-all">
+                            <span class="material-symbols-outlined" style="font-size: 20px;">close</span>
+                            İptal Et
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Help Card -->
+        <div class="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
+            <div class="flex gap-3">
+                <span class="material-symbols-outlined text-blue-400" style="font-size: 24px;">info</span>
+                <div class="flex-1">
+                    <h4 class="text-sm font-semibold text-blue-400 mb-1">İpucu</h4>
+                    <p class="text-xs text-slate-400">
+                        Proje başlığınızı güncellerken kısa, öz ve akılda kalıcı olmasına dikkat edin.
+                        Görsel değiştirirken yüksek kaliteli ve projenizi en iyi temsil eden bir görsel seçin.
+                        Önerilen görsel boyutu: 1200x800 piksel veya 3:2 oran.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
