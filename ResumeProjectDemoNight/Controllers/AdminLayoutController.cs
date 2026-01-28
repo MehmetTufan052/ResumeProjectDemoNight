@@ -29,6 +29,11 @@ namespace ResumeProjectDemoNight.Controllers
             var projectCount = context.Portfolios.Count();
             ViewBag.CompletedProjectsCount = projectCount;
 
+            ViewBag.UnreadMessageCount = context.Messages.Count(x => x.IsRead == false);
+
+            var totalProjects = context.Portfolios.Count();
+            ViewBag.TotalProjectsCount = totalProjects;
+
             var skills = context.Skills.ToList();
             
 

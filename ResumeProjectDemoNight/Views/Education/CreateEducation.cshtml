@@ -1,0 +1,89 @@
+﻿@model ResumeProjectDemoNight.Entities.Education
+
+@{
+    ViewData["Title"] = "CreateEducation";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="flex-1 overflow-y-auto p-8">
+    <div class="max-w-4xl mx-auto space-y-8">
+
+        <div class="flex items-center justify-between">
+            <div>
+                <h3 class="text-2xl font-bold text-white">Yeni Eğitim Ekle</h3>
+                <p class="text-slate-400 text-sm mt-1">Akademik geçmişinize yeni bir başarı ekleyin.</p>
+            </div>
+            <a href="/Education/Index/" class="flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all">
+                <span class="material-symbols-outlined" style="font-size: 20px;">arrow_back</span>
+                Listeye Dön
+            </a>
+        </div>
+
+        <div class="bg-card-dark rounded-xl border border-slate-800 overflow-hidden shadow-2xl">
+            <div class="p-8">
+                <form asp-action="CreateEducation" method="post" class="space-y-6">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label asp-for="SchoolName" class="block text-sm font-semibold text-slate-300">Okul / Kurum Adı</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-500" style="font-size: 20px;">school</span>
+                                <input type="text"
+                                       asp-for="SchoolName"
+                                       class="w-full pl-12 pr-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                                       placeholder="Örn: İstanbul Teknik Üniversitesi" required />
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label asp-for="EducationPeriodDate" class="block text-sm font-semibold text-slate-300">Eğitim Dönemi</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-500" style="font-size: 20px;">calendar_month</span>
+                                <input type="text"
+                                       asp-for="EducationPeriodDate"
+                                       class="w-full pl-12 pr-4 py-3 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                                       placeholder="Örn: 2018 - 2022" required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label asp-for="Description" class="block text-sm font-semibold text-slate-300">Açıklama / Başarılar</label>
+                        <div class="relative">
+                            <textarea asp-for="Description"
+                                      rows="5"
+                                      class="w-full p-4 bg-slate-900/50 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"
+                                      placeholder="Bölümünüz, aldığınız dersler veya dereceleriniz hakkında kısa bilgi verin..."></textarea>
+                        </div>
+                        <p class="text-xs text-slate-500">Bu alan portföyünüzde eğitim detayları olarak görünecektir.</p>
+                    </div>
+
+                    <div class="flex items-center gap-4 pt-6 border-t border-slate-800">
+                        <button type="submit"
+                                class="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-bold transition-all shadow-lg shadow-primary/20">
+                            <span class="material-symbols-outlined" style="font-size: 20px;">save</span>
+                            Eğitimi Kaydet
+                        </button>
+                        <a href="/Education/Index/"
+                           class="flex-1 flex items-center justify-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-6 py-3 rounded-lg font-bold transition-all">
+                            <span class="material-symbols-outlined" style="font-size: 20px;">close</span>
+                            İptal Et
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="bg-primary/10 border border-primary/20 rounded-lg p-4">
+            <div class="flex gap-3">
+                <span class="material-symbols-outlined text-primary" style="font-size: 24px;">lightbulb</span>
+                <div class="flex-1">
+                    <h4 class="text-sm font-semibold text-primary mb-1">Küçük Bir Tavsiye</h4>
+                    <p class="text-xs text-slate-400">
+                        Eğitim bilgilerinizi eklerken kronolojik olarak en son mezun olduğunuz okulu en üste gelecek şekilde eklemeniz ziyaretçileriniz için daha profesyonel bir görünüm sağlar.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
