@@ -41,5 +41,21 @@ namespace ResumeProjectDemoNight.Controllers
             _context.SaveChanges();
             return RedirectToAction("MessageList");
         }
+
+        [HttpGet]
+        public IActionResult UpdateMessage(int id)
+        {
+            var values=_context.Messages.Find(id);
+            return View(values);
+        }
+        
+        [HttpPost]
+        public IActionResult UpdateMessage(Message message)
+        {
+            _context.Messages.Update(message);
+            _context.SaveChanges();
+            return RedirectToAction("MessageList");
+            
+        }
     }
 }

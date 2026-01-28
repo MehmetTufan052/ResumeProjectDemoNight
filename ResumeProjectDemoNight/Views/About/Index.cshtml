@@ -1,0 +1,186 @@
+﻿@{
+    ViewData["Title"] = "About";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="flex-1 overflow-y-auto p-8">
+    <div class="max-w-6xl mx-auto space-y-8">
+        <!-- Welcome Section -->
+        <div class="flex items-center justify-between">
+            <div>
+                <h3 class="text-2xl font-bold text-white">Hakkımda Bilgileri</h3>
+                <p class="text-slate-400 text-sm mt-1">Kişisel bilgilerinizi ve tanıtım metninizi bu sayfadan yönetebilirsiniz.</p>
+            </div>
+            <a href="/About/UpdateAbout/@ViewBag.AboutId" class="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all shadow-lg shadow-primary/20">
+                <span class="material-symbols-outlined text-white" style="color: white; font-size: 20px;">edit</span>
+                Bilgileri Güncelle
+            </a>
+        </div>
+
+        <!-- Profile Card -->
+        <div class="bg-card-dark rounded-xl border border-slate-800 overflow-hidden shadow-2xl">
+            <div class="p-8">
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <!-- Profile Image -->
+                    <div class="flex-shrink-0">
+                        <div class="relative group">
+                            <div class="size-48 rounded-xl overflow-hidden border-4 border-primary/20 shadow-xl">
+                                @if (!string.IsNullOrEmpty(ViewBag.ImageUrl))
+                                {
+                                    <img src="@ViewBag.ImageUrl"
+                                         alt="@ViewBag.NameSurname"
+                                         class="w-full h-full object-cover"
+                                         onerror="this.src='https://via.placeholder.com/192'" />
+                                }
+                                else
+                                {
+                                    <div class="w-full h-full bg-slate-700 flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-slate-500" style="font-size: 80px;">person</span>
+                                    </div>
+                                }
+                            </div>
+                            <div class="absolute -bottom-3 -right-3 size-12 bg-primary rounded-lg flex items-center justify-center shadow-lg">
+                                <span class="material-symbols-outlined text-white" style="color: white; font-size: 24px;">verified</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Info -->
+                    <div class="flex-1 space-y-6">
+                        <!-- Name Section -->
+                        <div class="space-y-2">
+                            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider">Ad Soyad</label>
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary" style="font-size: 28px;">badge</span>
+                                <h4 class="text-2xl font-bold text-white">
+                                    @if (!string.IsNullOrEmpty(ViewBag.NameSurname))
+                                    {
+                                        @ViewBag.NameSurname
+                                    }
+                                    else
+                                    {
+                                        <span class="text-slate-500 italic">İsim girilmemiş</span>
+                                    }
+                                </h4>
+                            </div>
+                        </div>
+
+                        <!-- Image URL Section -->
+                        <div class="space-y-2">
+                            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider">Profil Resmi URL</label>
+                            <div class="flex items-center gap-3 bg-slate-900/50 rounded-lg px-4 py-3 border border-slate-700">
+                                <span class="material-symbols-outlined text-slate-500" style="font-size: 20px;">image</span>
+                                @if (!string.IsNullOrEmpty(ViewBag.ImageUrl))
+                                {
+                                    <a href="@ViewBag.ImageUrl" target="_blank" class="text-primary hover:text-primary/80 text-sm break-all transition-colors flex-1">
+                                        @ViewBag.ImageUrl
+                                    </a>
+                                    <a href="@ViewBag.ImageUrl" target="_blank" class="text-slate-400 hover:text-primary transition-colors">
+                                        <span class="material-symbols-outlined" style="font-size: 18px;">open_in_new</span>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="text-slate-500 italic text-sm">URL girilmemiş</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Description Card -->
+        <div class="bg-card-dark rounded-xl border border-slate-800 overflow-hidden shadow-2xl">
+            <div class="p-6 border-b border-slate-800">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-primary" style="font-size: 28px;">description</span>
+                    <h4 class="text-xl font-bold text-white">Hakkımda Metni</h4>
+                </div>
+            </div>
+            <div class="p-8">
+                @if (!string.IsNullOrEmpty(ViewBag.Description))
+                {
+                    <div class="prose prose-invert max-w-none">
+                        <p class="text-slate-300 leading-relaxed whitespace-pre-line">@ViewBag.Description</p>
+                    </div>
+                }
+                else
+                {
+                    <div class="text-center py-12">
+                        <span class="material-symbols-outlined text-slate-700" style="font-size: 64px;">description</span>
+                        <p class="text-slate-500 mt-4 italic">Henüz açıklama metni girilmemiş</p>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Name Status -->
+            <div class="bg-card-dark rounded-xl border border-slate-800 p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-slate-500 text-sm font-semibold mb-1">Ad Soyad</p>
+                        <p class="text-2xl font-bold text-white">
+                            @(string.IsNullOrEmpty(ViewBag.NameSurname) ? "Boş" : "Dolu")
+                        </p>
+                    </div>
+                    <div class="size-12 @(string.IsNullOrEmpty(ViewBag.NameSurname) ? "bg-red-500/10" : "bg-green-500/10") rounded-lg flex items-center justify-center">
+                        <span class="material-symbols-outlined @(string.IsNullOrEmpty(ViewBag.NameSurname) ? "text-red-400" : "text-green-400")" style="font-size: 24px;">
+                            @(string.IsNullOrEmpty(ViewBag.NameSurname) ? "close" : "check")
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Status -->
+            <div class="bg-card-dark rounded-xl border border-slate-800 p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-slate-500 text-sm font-semibold mb-1">Profil Resmi</p>
+                        <p class="text-2xl font-bold text-white">
+                            @(string.IsNullOrEmpty(ViewBag.ImageUrl) ? "Boş" : "Dolu")
+                        </p>
+                    </div>
+                    <div class="size-12 @(string.IsNullOrEmpty(ViewBag.ImageUrl) ? "bg-red-500/10" : "bg-green-500/10") rounded-lg flex items-center justify-center">
+                        <span class="material-symbols-outlined @(string.IsNullOrEmpty(ViewBag.ImageUrl) ? "text-red-400" : "text-green-400")" style="font-size: 24px;">
+                            @(string.IsNullOrEmpty(ViewBag.ImageUrl) ? "close" : "check")
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Description Status -->
+            <div class="bg-card-dark rounded-xl border border-slate-800 p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-slate-500 text-sm font-semibold mb-1">Açıklama</p>
+                        <p class="text-2xl font-bold text-white">
+                            @(string.IsNullOrEmpty(ViewBag.Description) ? "Boş" : "Dolu")
+                        </p>
+                    </div>
+                    <div class="size-12 @(string.IsNullOrEmpty(ViewBag.Description) ? "bg-red-500/10" : "bg-green-500/10") rounded-lg flex items-center justify-center">
+                        <span class="material-symbols-outlined @(string.IsNullOrEmpty(ViewBag.Description) ? "text-red-400" : "text-green-400")" style="font-size: 24px;">
+                            @(string.IsNullOrEmpty(ViewBag.Description) ? "close" : "check")
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Card -->
+        <div class="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4">
+            <div class="flex gap-3">
+                <span class="material-symbols-outlined text-blue-400" style="font-size: 24px;">info</span>
+                <div class="flex-1">
+                    <h4 class="text-sm font-semibold text-blue-400 mb-1">Bilgilendirme</h4>
+                    <p class="text-xs text-slate-400">
+                        Hakkımda bilgilerinizi güncellemek için "Bilgileri Güncelle" butonuna tıklayın.
+                        Bu bilgiler portföy sitenizin ana sayfasında görünecektir. Profil resminiz ve tanıtım metniniz ziyaretçilerinize ilk izlenimi oluşturacaktır.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
